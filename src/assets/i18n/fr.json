@@ -1,0 +1,15 @@
+{
+    "global": {
+        "title": "Stupéfiants Métrages"
+    },
+    "home":{
+        "yearsSelectorLabel": "Par année",
+        "allYears": "Toutes",
+        "searchTerm": "Trouve un film..."
+    },
+    "moviesListing": {
+        "movieNull": "Pas de résultat",
+        "movieSingle" : "film",
+        "moviePlural" : "films"
+    }
+}

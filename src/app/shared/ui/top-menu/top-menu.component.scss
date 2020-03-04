@@ -1,5 +1,17 @@
-mat-icon {
-    &.my-icons {
-        font-size: 2em;
+nav{
+    background-color:  rgb(65, 20, 65);
+    padding:8px 10%;
+    ul{
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+    }
+    li>mat-icon, li>a>mat-icon{
+        font-size: 2.4rem;
+        color:#fff;
+        &:hover{
+            cursor: pointer;
+            color:#ddd;
+        }
     }
 }

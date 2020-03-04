@@ -4,11 +4,12 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
+import { LanguageSwitcherComponent } from './language-switcher/language-switcher.component';
 
 
 
 @NgModule({
-  declarations: [TopMenuComponent, FooterComponent],
+  declarations: [TopMenuComponent, FooterComponent, LanguageSwitcherComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -16,7 +17,8 @@ import { MaterialModule } from '../material/material.module';
   ],
   exports: [
     TopMenuComponent,
-    FooterComponent
+    FooterComponent,
+    LanguageSwitcherComponent
   ]
 })
 export class UiModule { 

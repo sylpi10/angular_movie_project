@@ -4,6 +4,7 @@ import { Movie } from './../models/movie';
 import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { take, map, catchError } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class MovieService {
   private _years: Set<number> = new Set<number>();
   public years$: BehaviorSubject<number[]> = 
     new BehaviorSubject<number[]>(Array.from(this._years).sort());
+  public now: string;
+  public currentYear:number;
+  moviesCpt: number = 0;
 
   constructor(
     private httpClient: HttpClient
@@ -42,15 +46,16 @@ export class MovieService {
          {
            this._years.add(item.year);
            this.years$.next(Array.from(this._years).sort());
+           this.moviesCpt = response.length;
+           this.now = moment(new Date()).format('YYYY');
            return new Movie().deserialize(item)
           });
-          
-      })
+        })
     );
   }
 
   public byTitle(title: string): Observable<Movie[]> {
-    const apiRoute: string = `${environment.apiRoot}movie/title/${title}`;
+    const apiRoute: string = `${environment.apiRoot}movie/byTitle?t=${title}`;
     this._years = new Set<number>();
 
     return this.httpClient.get<any[]>(
@@ -59,10 +64,11 @@ export class MovieService {
     .pipe(
       take(1),
       map((response) => {
+        this.moviesCpt = response.length;
         return response.map((item) => {
           this._years.add(item.year);
           this.years$.next(Array.from(this._years).sort());
-            return new Movie().deserialize(item)
+          return new Movie().deserialize(item)
           }
         );
       })
@@ -86,8 +92,8 @@ export class MovieService {
         console.log(`Something went wrong : ${JSON.stringify(error)}`);
         return throwError(error.status) 
       })
-    );
-  }
+      );
+    }
 
   public update(movie: any): Observable<HttpResponse<any>> {
     const apiRoot: string = `${environment.apiRoot}movie/modify`;

@@ -12,6 +12,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 
 import { environment } from './../../../environments/environment';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -45,7 +46,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  public title: string = 'movies';
+  public title: string = 'amazing movies';
 
   public year: number = 0;
   public years: number[] = [];
@@ -59,7 +60,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     public movieService: MovieService,
     public userService: UserService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit() {

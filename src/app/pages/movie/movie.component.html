@@ -1,22 +1,64 @@
-<p>{{ movie | json }}</p>
+<div class="wrapper">
 
-<!-- Simple form to update movie -->
-<div *ngIf="movieForm">
-    <form [formGroup]="movieForm">
-        <mat-form-field class="">
-            <mat-label>Update synopsis</mat-label>
-            <textarea 
-                matInput 
-                placeholder="Ex. Once upon a time..."
-                formControlName="synopsis"
-                ></textarea>
-        </mat-form-field>
-        <button 
-            mat-raised-button 
-            color="primary" 
-            (click)="doUpdate()"
-            [disabled]="movieForm.invalid"
-        >Update</button>
-    </form>    
+    <mat-card class="example-card">
+        <mat-card-header>
+      
+          <mat-card-title class="text-center">
+            <h1> {{movie.title}} <span>[{{movie.originalTitle}}]</span> </h1>
+          </mat-card-title>
+      
+          <mat-card-subtitle class="subtitle"> {{movie.director.name}} | ({{movie.year}})</mat-card-subtitle>
+          <mat-card-subtitle class="subtitle"> {{movie.duration}} min</mat-card-subtitle>
+          <mat-card-subtitle class="subtitle"> {{movie.genre}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://www.offer.com.cy/images/no_photo.jpg" alt="movie wallpaper">
+        <mat-card-content>
+      
+        </mat-card-content>
+      
+        <form action="" [formGroup]="movieForm">
+          <mat-form-field class="mat-form">
+            <mat-label>Synopsis</mat-label>
+      
+            <textarea matInput cols="40" rows="8" placeholder="set synopsis" formControlName="synopsis"></textarea>
+          </mat-form-field>
+      
+          <button mat-stroked-button (click)="doUpdate()" [disabled]="movieForm.invalid"> Update </button>
+        </form>
+      
+        <mat-card-actions>
+          <button mat-stroked-button [routerLink]="['home']">&#8678; Go Back </button>
+          <button mat-stroked-button (click)="addLike()"> <span>&#9829;</span> {{likes}} </button>
+          <button mat-stroked-button [routerLink]="['movie/:id/modify']">Modify </button>
+      
+          <button mat-stroked-button (click)="doDelete()">Delete </button>
+        </mat-card-actions>
+      </mat-card>
+      
+      {{movie | json}}
+
+
+
+
+    <!-- <h1>Title : {{movie.title}}</h1> -->
+
+    <!-- <div *ngIf="movieForm">
+        <form [formGroup]="movieForm">
+            <mat-form-field class="">
+                <mat-label>Update synopsis</mat-label>
+                <textarea 
+                    matInput 
+                    placeholder="Ex. Once upon a time..."
+                    formControlName="synopsis"
+                    ></textarea>
+            </mat-form-field>
+            <button 
+                mat-raised-button 
+                color="primary" 
+                (click)="doUpdate()"
+                [disabled]="movieForm.invalid"
+            >Update</button>
+        </form>    
+    </div> -->
 </div>
 

@@ -1,0 +1,24 @@
+.wrapper{
+    background-color: #eee;
+    width: 100%;
+    margin: 60px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    h1{
+        color: rgb(65, 20, 65);
+        font-size: 2.7rem;
+        span{
+            font-size: 2rem;
+        }
+    }
+    mat-card-subtitle{
+        font-size: 1.2rem;
+    }
+}
+
+img{
+    width: 330px;
+}

@@ -1,0 +1,15 @@
+{
+    "global": {
+        "title": "Amazing Movies"
+    },
+    "home":{
+        "yearsSelectorLabel": "By Year",
+        "allYears": "All",
+        "searchTerm": "Find a movie..."
+    },
+    "moviesListing": {
+        "movieNull": "No result",
+        "movieSingle" : "movie",
+        "moviePlural" : "movies"
+    }
+}

@@ -1,12 +1,14 @@
-<h1>{{ title | uppercase }}</h1>
 
-<mat-toolbar color="primary">
+<h1>{{ 'global.title' | translate | uppercase }}</h1>
+
+<mat-toolbar>
       <mat-toolbar-row>
         <div id="filter">
             <mat-form-field>
-                <mat-label>By years</mat-label>
+                <mat-label>{{'home.yearsSelectorLabel' | translate}}</mat-label>
+
                 <mat-select [(ngModel)]="year">
-                    <mat-option [value]="0">All...</mat-option>
+                    <mat-option [value]="0">{{'home.allYears' | translate}}</mat-option>
                     <mat-option *ngFor="let year of years" [value]="year">
                         {{ year }}
                     </mat-option>
@@ -14,51 +16,61 @@
             </mat-form-field>
         </div>
         
-    <span class="example-spacer"></span>
+        <span class="example-spacer"></span>
+        
+        <app-search (movies)="receiveMovies($event)"></app-search>
+        <h4 class="m-auto" *ngIf="movieService.moviesCpt == 0">{{'moviesListing.movieNull' | translate}} </h4>
+        <h4 class="m-auto" *ngIf="movieService.moviesCpt == 1">{{movieService.moviesCpt}} {{'moviesListing.movieSingle' | translate}}  </h4>
+        <h4 class="m-auto" *ngIf="movieService.moviesCpt > 1">{{movieService.moviesCpt}} {{'moviesListing.moviePlural' | translate}}  </h4>
+    </mat-toolbar-row>
+        <!-- <h4 class="m-auto">{{'moviesListing.movieResult' | translate:{movies: (movies | async) } }}</h4> -->
 
-    <app-search (movies)="receiveMovies($event)"></app-search>
-  </mat-toolbar-row>
 </mat-toolbar>
 
-
-
-
-<div *ngFor="let movie of movies | async">
-    <mat-card class="movie" *ngIf="movie.year == year || year == 0">
-        <mat-card-title class="title"
-            [ngClass]="{'old': movie.year < 2000}"
-        >
+<div class="wrapper">
+    <div *ngFor="let movie of movies | async">
+        <mat-card class="movie" *ngIf="movie.year == year || year == 0">
+            <mat-card-title class="title"
+            [ngClass]="{'old': movie.year < 2000}">
                 {{ movie.title }}
- 
-
-            <mat-icon 
+                <mat-icon 
                 (click)="likeIt(movie)" 
                 *ngIf="movie.like == 0"
                 [@heartGrowing]="movie.animationState"
-            >
+                >
                 favorite_border
             </mat-icon>
-
+            
             <mat-icon 
-                *ngIf="movie.like > 0" 
-                matBadge="{{ movie.like }}" 
+            ng-controller="datCtrl"
+            *ngIf="movie.like > 0" 
+            matBadge="{{ movie.like }}" 
                 matBadgeColor="warn"
                 [@heartSmalling]="movie.animationState"
-            >
+                >
                 favorite
             </mat-icon>
+            
+            <h2>{{ movie.year | elapsedTime }} 
+                <!-- <mat-card-subtitle *ngIf="movieService.now - movie.year <= 1">({{ movie.elapsedTime }} year) </mat-card-subtitle> -->
+                <!-- <mat-card-subtitle *ngIf="movieService.now - movie.year > 1">({{ movie.elapsedTime }} years) </mat-card-subtitle> -->
+            </h2>
+            <mat-card-subtitle *ngIf="movieService.now - movie.year > 10">
+                more than 10 years
+            </mat-card-subtitle>
         </mat-card-title>
 
         <mat-card-content>
+            <img mat-card-image src="https://www.offer.com.cy/images/no_photo.jpg" alt="movie wallpaper">
         </mat-card-content>
 
         <mat-card-footer>
-            {{ movie.year }}
-            <mat-icon
+            <button mat-raised-button 
                 (click)="moveTo(movie.idMovie)"
-            >more</mat-icon>
+            >Details<i class="material-icons">add_circle_outline</i>
+        </button> 
         </mat-card-footer>
     </mat-card>
 </div>
 
-
+</div>
