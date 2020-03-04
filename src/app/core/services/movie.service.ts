@@ -15,7 +15,6 @@ export class MovieService {
   public years$: BehaviorSubject<number[]> = 
     new BehaviorSubject<number[]>(Array.from(this._years).sort());
   public now: string;
-  public currentYear:number;
   moviesCpt: number = 0;
 
   constructor(
