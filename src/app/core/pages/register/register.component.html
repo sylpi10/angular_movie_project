@@ -1,26 +1,39 @@
-<form action="POST" [formGroup]="registerForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+<form action="POST" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <input type="text" required placeholder="{{'register.name' | translate }}" formControlName="username">
-    <p *ngIf="username.errors">
-        Username is required.
+    <p *ngIf="username.invalid">
+        *Required
     </p>
 
     <input type="text" required placeholder="{{'register.firstname' | translate }}" formControlName="firstname">
-    <p *ngIf="firstname.errors">
-        Firstname is required.
+    <p *ngIf="firstname.invalid">
+        *Required
     </p>
-    <input type="text" required placeholder="{{'register.lastname' | translate }}" formControlName="lastname">
-    <p *ngIf="lastname.errors">
-        Lastname is required.
+    <input type="text" required placeholder="{{'register.lastname' | translate }}" 
+    formControlName="lastname">
+    <p *ngIf="lastname.invalid">
+        *Required
     </p>
-    <input type="mail" required placeholder="{{'register.mail' | translate }}" formControlName="email" ngModel email>
-    <p *ngIf="mail.errors">
-        Email is required.
+    <input type="mail" required placeholder="{{'register.mail' | translate }}" 
+    formControlName="mail">
+    <p *ngIf="mail.invalid">
+        *Required
     </p>
-    <input type="password" required placeholder="{{'register.password' | translate }}" formControlName="password">
+    <input type="password" placeholder="{{'register.password' | translate }}" 
+    formControlName="password">
     <p *ngIf="password.errors">
-        Password is required.
+        *Password and confirm must match. <br>
     </p>
-    <button type="submit" (click)="onSubmit()"
-        [disabled]="registerForm.invalid">{{'register.register' | translate}}</button>
+    <!-- <p *ngIf="password.errors.minlength">
+        * Five characters minimum
+    </p> -->
+    <input type="password" required placeholder="{{'register.confirmPassword' | translate }}"
+     formControlName="confirmPassword">
+    <p *ngIf="confirmPassword.errors">
+        *Confirm and password must match.
+    </p>
+    
+    <button mat-raised-button type="submit" (click)="onSubmit()" 
+    
+        [disabled]="registerForm.invalid">{{'register.register' | translate}} </button>
 </form>

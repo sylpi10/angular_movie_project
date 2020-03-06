@@ -28,19 +28,21 @@ form{
         height: 40px;
         width: 120px;
         margin:10px auto 0 auto;
-        border: solid 1px silver;
-        background-color: #444;
-        color:#eee;
-        transition: background-color 1s;
+        // border: solid 1px silver;
+        // background-color: #444;
+        // color:#eee;
+        // transition: background-color 1s;
         cursor: pointer;
-        &:hover{
-            background-color: #fff;
-            color:#444;
-        }
+        // &:hover{
+        //     background-color: #fff;
+        //     color:#444;
+        // }
     }
     p{
         font-size: 0.8rem;
+        margin-top: -10px;
         color: #555;
-        margin-left: 40px;
+        margin-left: 42px;
+        color: #f44;
     }
 }

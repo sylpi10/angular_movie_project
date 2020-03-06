@@ -22,6 +22,7 @@
         "lastname" : "votre nom de famille",
         "mail" : "votre adresse mail",
         "password" : "votre mot de passe",
+        "confirmPassword" : "confirmer mot de passe",
         "register": "s'inscrire"
     }
 }

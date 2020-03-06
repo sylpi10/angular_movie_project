@@ -21,7 +21,8 @@
         "firstname" : "your firstname",
         "lastname" : "your lastname",
         "mail" : "your email address",
-        "password" : "your email address",
+        "password" : "your password",
+        "confirmPassword" : "confirm password",
         "register": "register"
     }
 }
