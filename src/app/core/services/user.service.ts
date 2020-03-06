@@ -21,7 +21,8 @@ export class UserService {
       {
         login: 'administrator',
         password: 'password',
-        token: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNTgzMjQ2MjY2LCJpYXQiOjE1ODMyMjgyNjZ9.Rb1CMsOxuGrjzbX78enhr7LSy_7_a1G3qxq-KTLbF_L-SBM0Els6pDGRNQV8OsCrYY13oGpPZdOY6XVyZ0idjw',
+        token: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmlzdHJhdG9yIiwiZXhwIjoxNTgzNDM4MDkwLCJpYXQiOjE1ODM0MjAwOTB9.44XoAdd9l2oZ5sFWCK4aJEoVLfj-7EwZ-qSgmSEBTBzSqViUBYXdZwNUIQP82H3YqyvafBru845MRkMvJatAvw',
+        
         isAuthenticated: false
       }
     );

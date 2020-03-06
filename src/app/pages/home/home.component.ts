@@ -13,6 +13,10 @@ import { WebSocketSubject } from 'rxjs/webSocket';
 import { environment } from './../../../environments/environment';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+import { ElapsedTimePipe } from 'src/app/shared/pipes/elapsed-time.pipe';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -55,13 +59,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   public movies: Observable<Movie[]>;
 
   private socket$: WebSocketSubject<any>;
+  private langChanges$: any;
 
   constructor(
     public movieService: MovieService,
     public userService: UserService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private translateService: TranslateService,
   ) { }
 
   ngOnInit() {
@@ -91,6 +97,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     () => console.warn('Completed!')
     );
     
+    this.langChanges$ = this.translateService.onLangChange;
+    this.langChanges$.subscribe((event: any) =>{
+    
+      console.log('ee');
+      this.movies = this.movies.pipe(
+        map((movies: Movie[]): Movie[] => {
+          return movies;
+        })
+      )
+      
+    });
 
     this.movies = this.movieService.all();
     
@@ -102,6 +119,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.yearSubscription.unsubscribe();
+    this.langChanges$.unsubscribe();
   }
   
   public likeIt(movie: Movie): void {
@@ -139,13 +157,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.router.navigate(['../','movie', idMovie]);
     } else {
       // Load a toast and route to login
-      const snack: MatSnackBarRef<SimpleSnackBar> = this.snackBar.open(
-        'You have to login or create an account before',
-        null,
-        {
-          duration: 2500
-        }
-      );
+        const snack: MatSnackBarRef<SimpleSnackBar> = this.snackBar.open(
+          'You have to login or create an account before',
+          null,
+          {
+            duration: 2500
+          }
+        );
       snack.afterDismissed().subscribe((status: any) => {
         const navigationExtras: NavigationExtras = {state: {movie: idMovie}};
         this.router.navigate(['../', 'login'], navigationExtras);

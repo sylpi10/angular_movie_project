@@ -1,0 +1,26 @@
+<form action="POST" [formGroup]="registerForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+    <input type="text" required placeholder="{{'register.name' | translate }}" formControlName="username">
+    <p *ngIf="username.errors">
+        Username is required.
+    </p>
+
+    <input type="text" required placeholder="{{'register.firstname' | translate }}" formControlName="firstname">
+    <p *ngIf="firstname.errors">
+        Firstname is required.
+    </p>
+    <input type="text" required placeholder="{{'register.lastname' | translate }}" formControlName="lastname">
+    <p *ngIf="lastname.errors">
+        Lastname is required.
+    </p>
+    <input type="mail" required placeholder="{{'register.mail' | translate }}" formControlName="email" ngModel email>
+    <p *ngIf="mail.errors">
+        Email is required.
+    </p>
+    <input type="password" required placeholder="{{'register.password' | translate }}" formControlName="password">
+    <p *ngIf="password.errors">
+        Password is required.
+    </p>
+    <button type="submit" (click)="onSubmit()"
+        [disabled]="registerForm.invalid">{{'register.register' | translate}}</button>
+</form>

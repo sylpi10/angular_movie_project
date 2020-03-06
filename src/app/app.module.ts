@@ -25,6 +25,7 @@ import { TranslationService } from './core/services/translation.service';
 
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ElapsedTimePipe } from './shared/pipes/elapsed-time.pipe';
+import { RegisterComponent } from './core/pages/register/register.component';
 
 
 
@@ -60,7 +61,8 @@ export function initializeApp(appConfig: AppConfig) {
     LoginComponent,
     SearchComponent,
     MovieComponent,
-    ElapsedTimePipe
+    ElapsedTimePipe,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

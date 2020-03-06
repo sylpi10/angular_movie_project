@@ -6,6 +6,11 @@
                     <mat-icon>home</mat-icon>
                 </a>
             </li>
+            <li>
+                <a [routerLink]="['register']">
+                    <mat-icon>directions_bike</mat-icon>
+                </a>
+            </li>
             <li *ngIf="!user">
                 <a [routerLink]="['login']">
                     <mat-icon class="my-icons">account_box</mat-icon>

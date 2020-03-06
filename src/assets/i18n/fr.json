@@ -10,6 +10,18 @@
     "moviesListing": {
         "movieNull": "Pas de résultat",
         "movieSingle" : "film",
-        "moviePlural" : "films"
+        "moviePlural" : "films",
+        "lessOne": "Il y a moins d'un an",
+        "moreTwo": "Il y a plus de 2 ans",
+        "twoAndFive": "Entre 2 et 5 ans",
+        "moreFive": "Il y a plus de 5 ans"
+    },
+    "register":{
+        "name": "votre pseudo",
+        "firstname" : "votre prénom",
+        "lastname" : "votre nom de famille",
+        "mail" : "votre adresse mail",
+        "password" : "votre mot de passe",
+        "register": "s'inscrire"
     }
 }
